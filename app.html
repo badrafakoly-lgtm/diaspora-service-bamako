@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="DSB Bamako" />
+  <title>App • Diaspora Service Bamako</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-900 pb-24">
+
+  <!-- En-tête mobile fixe -->
+  <header class="sticky top-0 z-40 bg-slate-900 text-white px-4 py-3.5 shadow-md flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center font-extrabold text-sm">DSB</div>
+      <div>
+        <h1 class="font-extrabold text-sm leading-tight">Diaspora Service</h1>
+        <span class="text-[11px] text-emerald-400 font-semibold block">Bamako • Suivi en direct</span>
+      </div>
+    </div>
+    <a href="index.html" class="text-xs bg-white/10 hover:bg-white/20 px-2.5 py-1.5 rounded-lg font-semibold">
+      Site Web
+    </a>
+  </header>
+
+  <main class="max-w-md mx-auto px-4 pt-4">
+
+    <!-- ONGLET 1 : ACCUEIL -->
+    <section id="tab-home" class="tab-content active space-y-4">
+      <div class="bg-gradient-to-br from-emerald-800 to-slate-900 text-white rounded-2xl p-5 shadow-lg">
+        <span class="text-[11px] font-bold uppercase tracking-wider bg-white/15 px-2.5 py-1 rounded-full">Votre relais de confiance</span>
+        <h2 class="text-xl font-extrabold mt-3 leading-snug">Pilotez vos projets à Bamako depuis votre téléphone.</h2>
+        <p class="text-xs text-slate-200 mt-1.5 leading-relaxed">Rapports photo/vidéo géolocalisés, courses pour la famille et gestion de vos biens.</p>
+        <button onclick="switchTab('order')" class="mt-4 w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-sm shadow transition">
+          Demander une mission
+        </button>
+      </div>
+
+      <div>
+        <h3 class="font-extrabold text-sm text-slate-800 mb-2.5">Choisir un pôle d'intervention</h3>
+        <div class="space-y-2.5">
+          <div onclick="quickOrder('Suivi de Chantier')" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between active:scale-[0.99] transition cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="w-11 h-11 rounded-xl bg-amber-100 text-xl flex items-center justify-center">🏗️</span>
+              <div>
+                <h4 class="font-bold text-sm">Suivi de Chantier</h4>
+                <p class="text-xs text-slate-500">Visites, contrôle matériaux & vidéos</p>
+              </div>
+            </div>
+            <span class="text-emerald-700 font-bold text-xs">40k FCFA+</span>
+          </div>
+
+          <div onclick="quickOrder('Courses & Livraison Famille')" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between active:scale-[0.99] transition cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="w-11 h-11 rounded-xl bg-emerald-100 text-xl flex items-center justify-center">📦</span>
+              <div>
+                <h4 class="font-bold text-sm">Courses & Famille</h4>
+                <p class="text-xs text-slate-500">Achats & livraison à domicile</p>
+              </div>
+            </div>
+            <span class="text-emerald-700 font-bold text-xs">5k FCFA+</span>
+          </div>
+
+          <div onclick="quickOrder('Gestion Immobilière')" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between active:scale-[0.99] transition cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="w-11 h-11 rounded-xl bg-blue-100 text-xl flex items-center justify-center">🏠</span>
+              <div>
+                <h4 class="font-bold text-sm">Gestion Immobilière</h4>
+                <p class="text-xs text-slate-500">Loyers, états des lieux & entretien</p>
+              </div>
+            </div>
+            <span class="text-emerald-700 font-bold text-xs">7% - 10%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contacts rapides -->
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 space-y-2.5">
+        <h3 class="font-extrabold text-xs uppercase text-slate-500">Assistance Directe</h3>
+        <a id="homeWaLink" href="#" target="_blank" class="flex items-center justify-between bg-emerald-50 border border-emerald-200 p-3 rounded-xl">
+          <span class="text-xs font-bold text-emerald-900">💬 WhatsApp Diaspora</span>
+          <span id="homeWaText" class="text-xs font-extrabold text-emerald-700"></span>
+        </a>
+        <a id="homeMaliLink" href="#" class="flex items-center justify-between bg-slate-50 border border-slate-200 p-3 rounded-xl">
+          <span class="text-xs font-bold text-slate-800">📞 Ligne terrain Bamako</span>
+          <span id="homeMaliText" class="text-xs font-extrabold text-slate-900"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ONGLET 2 : SUIVI MISSIONS -->
+    <section id="tab-missions" class="tab-content space-y-4">
+      <h2 class="font-extrabold text-lg">Suivi & Rapports Types</h2>
+      <p class="text-xs text-slate-600">Aperçu de la transparence garantie pour chaque mission confiée à Bamako.</p>
+
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div class="flex justify-between items-start">
+          <div>
+            <span class="text-[11px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Rapport #001 • Exemple</span>
+            <h3 class="font-extrabold text-sm mt-1">Chantier Villa • Kalaban Coro</h3>
+          </div>
+          <span class="text-xs font-extrabold text-emerald-700">80%</span>
+        </div>
+        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+          <div class="bg-emerald-600 h-full w-4/5"></div>
+        </div>
+        <ul class="text-xs text-slate-600 space-y-1.5 pt-1">
+          <li>✅ <strong>Matériaux :</strong> 50 sacs de ciment vérifiés</li>
+          <li>✅ <strong>Équipe :</strong> 4 maçons présents sur site</li>
+          <li>📸 <strong>Preuves :</strong> 6 photos HD + 1 vidéo envoyées</li>
+        </ul>
+        <button onclick="switchTab('order')" class="w-full py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs">
+          Demander une mission similaire
+        </button>
+      </div>
+    </section>
+
+    <!-- ONGLET 3 : COMMANDER -->
+    <section id="tab-order" class="tab-content space-y-4">
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <h2 class="font-extrabold text-lg mb-1">Demander une mission</h2>
+        <p class="text-xs text-slate-500 mb-4">Configurez votre demande et envoyez-la directement sur WhatsApp.</p>
+
+        <form onsubmit="submitAppOrder(event)" class="space-y-3.5">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Type de mission</label>
+            <select id="appService" onchange="updateEstimate()" class="w-full p-3 rounded-xl border border-slate-300 text-sm bg-white font-semibold">
+              <option value="Suivi de Chantier" data-fcfa="45000">🏗️ Suivi de Chantier (Forfait mensuel)</option>
+              <option value="Courses & Livraison Famille" data-fcfa="10000">📦 Courses & Livraison Famille</option>
+              <option value="Gestion Immobilière" data-fcfa="20000">🏠 Gestion Immobilière / Visite</option>
+              <option value="Mission Ponctuelle" data-fcfa="15000">📄 Démarche / Intervention ponctuelle</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Votre Nom & Pays</label>
+            <input type="text" id="appClient" required placeholder="Ex: Aminata Diallo (France)" class="w-full p-3 rounded-xl border border-slate-300 text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Quartier à Bamako</label>
+            <input type="text" id="appDistrict" required placeholder="Ex: Magnambougou, Sebenikoro..." class="w-full p-3 rounded-xl border border-slate-300 text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Précisions sur la mission</label>
+            <textarea id="appNotes" rows="3" required placeholder="Indiquez ce que nous devons vérifier, acheter ou gérer..." class="w-full p-3 rounded-xl border border-slate-300 text-sm"></textarea>
+          </div>
+
+          <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl flex items-center justify-between">
+            <span class="text-xs font-bold text-emerald-900">Estimation prestation :</span>
+            <span id="priceEstimate" class="text-sm font-extrabold text-emerald-700">45 000 FCFA (~69 €)</span>
+          </div>
+
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 rounded-xl shadow-md text-sm">
+            Demander une mission sur WhatsApp
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ONGLET 4 : COMPTE & INSTALLATION -->
+    <section id="tab-account" class="tab-content space-y-4">
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <h2 class="font-extrabold text-base">Installer l'application sur mobile</h2>
+        <div class="text-xs text-slate-600 space-y-2">
+          <p><strong>🍏 Sur iPhone (Safari) :</strong> Appuyez sur le bouton <strong>Partager</strong> (carré avec flèche vers le haut) puis choisissez <strong>« Sur l'écran d'accueil »</strong>.</p>
+          <p><strong>🤖 Sur Android (Chrome) :</strong> Appuyez sur les <strong>3 points (⋮)</strong> en haut à droite puis sur <strong>« Ajouter à l'écran d'accueil »</strong>.</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <h3 class="font-extrabold text-base">Paramètres Administrateur</h3>
+        <p class="text-xs text-slate-500">Modifiez vos coordonnées ici à tout moment pour tester ou mettre à jour vos numéros sur cet appareil :</p>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Numéro WhatsApp (sans +)</label>
+          <input type="text" id="cfgWa" class="w-full p-2.5 rounded-xl border border-slate-300 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Numéro Terrain Mali</label>
+          <input type="text" id="cfgMali" class="w-full p-2.5 rounded-xl border border-slate-300 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Email professionnel</label>
+          <input type="email" id="cfgEmail" class="w-full p-2.5 rounded-xl border border-slate-300 text-sm">
+        </div>
+        <button onclick="saveSettings()" class="w-full bg-slate-900 text-white font-bold py-2.5 rounded-xl text-xs">
+          Enregistrer les modifications
+        </button>
+        <p id="saveMsg" class="text-xs text-emerald-700 font-bold hidden text-center">✅ Coordonnées mises à jour !</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Barre de navigation inférieure -->
+  <nav class="fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 px-2 py-2 flex justify-around items-center z-50">
+    <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center text-emerald-700 font-bold text-[11px]">
+      <span class="text-lg">🏠</span>
+      <span>Accueil</span>
+    </button>
+    <button onclick="switchTab('missions')" id="nav-missions" class="nav-btn flex flex-col items-center text-slate-400 font-semibold text-[11px]">
+      <span class="text-lg">📋</span>
+      <span>Missions</span>
+    </button>
+    <button onclick="switchTab('order')" id="nav-order" class="nav-btn flex flex-col items-center text-slate-400 font-semibold text-[11px]">
+      <span class="text-lg">➕</span>
+      <span>Demander</span>
+    </button>
+    <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center text-slate-400 font-semibold text-[11px]">
+      <span class="text-lg">⚙️</span>
+      <span>Compte</span>
+    </button>
+  </nav>
+
+  <script>
+    // ==========================================
+    // CONFIGURATION PAR DÉFAUT
+    // ==========================================
+    const DEFAULT_CONFIG = {
+      whatsappNumber: '33651615178',
+      maliPhone: '+223 90 58 13 48',
+      email: 'badrafakoly@gmail.com'
+    };
+
+    let CONFIG = JSON.parse(localStorage.getItem('dsb_config')) || DEFAULT_CONFIG;
+
+    function refreshContacts() {
+      document.getElementById('homeWaText').textContent = '+' + CONFIG.whatsappNumber;
+      document.getElementById('homeWaLink').href = `https://wa.me/${CONFIG.whatsappNumber}`;
+      document.getElementById('homeMaliText').textContent = CONFIG.maliPhone;
+      document.getElementById('homeMaliLink').href = `tel:${CONFIG.maliPhone.replace(/\s+/g, '')}`;
+
+      document.getElementById('cfgWa').value = CONFIG.whatsappNumber;
+      document.getElementById('cfgMali').value = CONFIG.maliPhone;
+      document.getElementById('cfgEmail').value = CONFIG.email;
+    }
+
+    function saveSettings() {
+      CONFIG = {
+        whatsappNumber: document.getElementById('cfgWa').value.trim().replace('+', ''),
+        maliPhone: document.getElementById('cfgMali').value.trim(),
+        email: document.getElementById('cfgEmail').value.trim()
+      };
+      localStorage.setItem('dsb_config', JSON.stringify(CONFIG));
+      refreshContacts();
+      const msg = document.getElementById('saveMsg');
+      msg.classList.remove('hidden');
+      setTimeout(() => msg.classList.add('hidden'), 2500);
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('text-emerald-700', 'font-bold');
+        btn.classList.add('text-slate-400', 'font-semibold');
+      });
+      const activeBtn = document.getElementById('nav-' + tabId);
+      activeBtn.classList.remove('text-slate-400', 'font-semibold');
+      activeBtn.classList.add('text-emerald-700', 'font-bold');
+    }
+
+    function quickOrder(serviceName) {
+      document.getElementById('appService').value = serviceName;
+      updateEstimate();
+      switchTab('order');
+    }
+
+    function updateEstimate() {
+      const sel = document.getElementById('appService');
+      const fcfa = parseInt(sel.options[sel.selectedIndex].getAttribute('data-fcfa'), 10);
+      const eur = Math.round(fcfa / 655.957);
+      document.getElementById('priceEstimate').textContent = `${fcfa.toLocaleString('fr-FR')} FCFA (~${eur} €)`;
+    }
+
+    function submitAppOrder(e) {
+      e.preventDefault();
+      const service = document.getElementById('appService').value;
+      const client = document.getElementById('appClient').value.trim();
+      const district = document.getElementById('appDistrict').value.trim();
+      const notes = document.getElementById('appNotes').value.trim();
+
+      const msg = `Bonjour Diaspora Service Bamako (via l'App),\n\nJe souhaite *demander une mission* :\n• *Client :* ${client}\n• *Service :* ${service}\n• *Quartier :* ${district}\n• *Détails :* ${notes}`;
+      window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    refreshContacts();
+    updateEstimate();
+  </script>
+</body>
+</html>
