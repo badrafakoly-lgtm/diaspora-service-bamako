@@ -3,9 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="DSB Bamako" />
+  <meta name="apple-mobile-web-app-capable" content="yes" /> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> 
+  <link id="dsb-apple-icon" rel="apple-touch-icon" sizes="512x512" href="" />
+<script>
+(function () {
+  const c = document.createElement('canvas');
+  c.width = 512;
+  c.height = 512;
+  const ctx = c.getContext('2d');
+  const g = ctx.createLinearGradient(0, 0, 512, 512);
+  g.addColorStop(0, '#059669');
+  g.addColorStop(1, '#064e3b');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, 512, 512);
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath();
+  ctx.moveTo(256, 72);
+  ctx.lineTo(396, 128);
+  ctx.lineTo(396, 245);
+  ctx.quadraticCurveTo(396, 338, 256, 395);
+  ctx.quadraticCurveTo(116, 338, 116, 245);
+  ctx.lineTo(116, 128);
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle = '#065f46';
+  ctx.beginPath();
+  ctx.moveTo(256, 135);
+  ctx.lineTo(342, 204);
+  ctx.lineTo(170, 204);
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillRect(194, 204, 124, 102);
+  ctx.fillStyle = '#f59e0b';
+  ctx.fillRect(238, 204, 36, 102);
+  ctx.fillStyle = '#fde68a';
+  ctx.font = '900 74px -apple-system, BlinkMacSystemFont, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('DSB', 256, 474);
+  const link = document.getElementById('dsb-apple-icon');
+  if (link) {
+    link.href = c.toDataURL('image/png');
+  }
+})();
+</script>
+
+  <meta name="apple-mobile-web-app-title" content="DSB Bamako" /> 
   <title>App • Diaspora Service Bamako</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
